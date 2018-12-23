@@ -8,6 +8,8 @@ Over time I hope to see my tests' brittleness exposed which will give me the opp
 
 As this project is a learning experience I wouldn't recommend being inspired by it (this is even more true for the `Puppeteer` / `JavaScript` tests where I've no idea what I'm doing :joy_cat:).
 
+- [Selenium WebDriver C# implementation README](./selenium-csharp/README.md)
+
 [selenium-webdriver]: https://www.seleniumhq.org/projects/webdriver/
 [puppeteer]: https://developers.google.com/web/tools/puppeteer/
 [github]: https://github.com/

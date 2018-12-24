@@ -1,0 +1,21 @@
+resources:
+- repo: self
+queue:
+  name: Hosted Ubuntu 1604
+
+steps:
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
+  displayName: Install Yarn 1.12.3
+  inputs:
+    versionSpec: 1.12.3
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+  displayName: yarn install
+  inputs:
+    Arguments: install
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+  displayName: yarn test
+  inputs:
+    Arguments: test

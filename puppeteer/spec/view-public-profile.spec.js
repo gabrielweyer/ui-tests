@@ -1,10 +1,12 @@
 const puppeteer = require('puppeteer');
 const config = require('../config');
 
-let browser;
-let page;
+
 
 describe('ViewPublicProfile', () => {
+  var browser;
+  var page;
+
   beforeAll(async () => {
     browser = await puppeteer.launch({headless: true});
     page = await browser.newPage();

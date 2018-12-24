@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "jasmine"
+  },
+  "devDependencies": {
+    "puppeteer": "^1.11.0"
+  },
+  "private": true
+}

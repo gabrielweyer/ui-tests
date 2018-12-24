@@ -3,6 +3,7 @@
     "test": "jasmine"
   },
   "devDependencies": {
+    "jasmine": "^3.3.1",
     "puppeteer": "^1.11.0"
   },
   "private": true

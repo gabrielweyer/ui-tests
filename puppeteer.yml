@@ -1,7 +1,12 @@
-resources:
-- repo: self
-queue:
-  name: Hosted Ubuntu 1604
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+trigger:
+  paths:
+    include:
+    - puppeteer/*
+    exclude:
+    - puppeteer/README.md
 
 steps:
 
@@ -14,8 +19,10 @@ steps:
   displayName: yarn install
   inputs:
     Arguments: install
+    ProjectDirectory: puppeteer
 
 - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
   displayName: yarn test
   inputs:
     Arguments: test
+    ProjectDirectory: puppeteer

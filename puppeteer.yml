@@ -25,7 +25,8 @@ steps:
     Arguments: install
     ProjectDirectory: puppeteer
 
-- bash: |
-    cd puppeteer
-    node ./node_modules/jasmine/bin/jasmine.js
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
   displayName: yarn test
+  inputs:
+    Arguments: test
+    ProjectDirectory: puppeteer

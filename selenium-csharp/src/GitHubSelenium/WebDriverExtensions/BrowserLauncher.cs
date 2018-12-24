@@ -11,7 +11,10 @@ namespace GitHubSelenium.WebDriverExtensions
         {
             var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            return new ChromeDriver(currentDirectory);
+            var options = new ChromeOptions();
+            options.AddArgument("--headless");
+
+            return new ChromeDriver(currentDirectory, options);
         }
     }
 }

@@ -1,12 +1,10 @@
 const puppeteer = require('puppeteer');
 const config = require('../config');
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+
 describe('ViewPublicProfile', () => {
   describe('Given navigate to public profile', () => {
-    beforeEach(() => {
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000;
-    });
-
     it('Then display full name', async () => {
       const fullnameSelector = '.vcard-fullname';
 

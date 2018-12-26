@@ -22,7 +22,7 @@ namespace GitHubSelenium.WebDriverExtensions
 
         public static void TakeScreenshot(this IWebDriver browser, string filenameNoPathNoExtension)
         {
-            const string screenshotsPath = "../screenshots/";
+            const string screenshotsPath = "./screenshots/";
 
             var screenshot = (browser as ITakesScreenshot)?.GetScreenshot();
             Directory.CreateDirectory(screenshotsPath);

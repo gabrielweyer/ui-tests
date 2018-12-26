@@ -25,6 +25,6 @@ steps:
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'FailedTestsScreenshots'
-    targetPath: $(Build.StagingDirectory)
+    targetPath: '$(Build.StagingDirectory)/screenshots'
   condition: failed()
   displayName: Upload screenshot(s) after test failure

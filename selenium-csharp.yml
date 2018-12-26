@@ -27,7 +27,7 @@ steps:
     artifactName: 'FailedTestsScreenshots'
     targetPath: '$(Build.StagingDirectory)/screenshots'
   condition: failed()
-  displayName: Upload screenshot(s) after test failure
+  displayName: Upload screenshot(s) after test(s) failure
 
 - task: PublishTestResults@2
   inputs:
@@ -36,3 +36,4 @@ steps:
     searchFolder: $(Common.TestResultsDirectory)
     publishRunAttachments: true
   condition: succeededOrFailed()
+  displayName: Publish tests results

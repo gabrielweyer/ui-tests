@@ -22,7 +22,6 @@ steps:
     GitHub__SignInCredentials__Username: $(GitHub.SignInCredentials.Username)
   displayName: Run tests
 
-steps:
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'FailedTestsScreenshots'

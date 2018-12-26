@@ -20,16 +20,16 @@ namespace GitHubSelenium
         {
             // Arrange
 
-            var options = OptionsReader.GitHub.Value;
+            var options = OptionsReader.GitHub.Value.PublicProfile;
 
             // Act
 
-            _browser.Navigate().GoToUrl(new Uri($"https://github.com/{options.PublicProfile.Username}"));
-            var fullnameElement = _browser.WaitUntil(By.CssSelector(".vcard-fullname"), TimeSpan.FromSeconds(5));
+            _browser.Navigate().GoToUrl(new Uri($"https://github.com/{options.Username}"));
+            var fullnameElement = _browser.WaitUntilElement(By.CssSelector(".vcard-fullname"), TimeSpan.FromSeconds(5));
 
             // Assert
 
-            Assert.Equal(options.PublicProfile.ExpectedFullname, fullnameElement.Text);
+            Assert.Equal(options.ExpectedFullname, fullnameElement.Text);
         }
 
         public void Dispose()

@@ -10,6 +10,7 @@ namespace GitHubSelenium.Options
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddUserSecrets<OptionsReader>(optional: true)
+                .AddEnvironmentVariables()
                 .Build();
 
             return config.GetSection("GitHub").Get<GitHubOptions>();

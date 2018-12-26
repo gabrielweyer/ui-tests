@@ -15,5 +15,17 @@ trigger:
 steps:
 
 - bash: |
-    cd selenium-csharp
-    dotnet test
+    cd selenium-csharp/src/GitHubSelenium
+    dotnet test --output $(Build.StagingDirectory)
+  env:
+    GitHub__SignInCredentials__Password: $(GitHub.SignInCredentials.Password)
+    GitHub__SignInCredentials__Username: $(GitHub.SignInCredentials.Username)
+  displayName: Run tests
+
+steps:
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'FailedTestsScreenshots'
+    targetPath: $(Build.StagingDirectory)
+  condition: failed()
+  displayName: Upload screenshot(s) after test failure

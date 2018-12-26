@@ -11,6 +11,12 @@ As this project is a learning experience I wouldn't recommend being inspired by 
 - [Selenium WebDriver C# implementation README](./selenium-csharp/README.md)
 - [Puppeteer implementation README](./puppeteer/README.md)
 
+## Configuration
+
+Some tests require a `GitHub` account to run. I recommend creating a testing one as - hopefully - you've got `2FA` enabled on your personal account (if not please follow [Securing your account with two-factor authentication (2FA)][github-2fa]).
+
+The configuration of secrets is explained in the [Selenium C#](./selenium-csharp/README.md) and [Puppeteer](./puppeteer/README.md) `READMEs`.
+
 ## Continuous Integration
 
 I'm using [Azure pipelines][azure-pipelines] to run the tests on every commit to `master`.
@@ -24,7 +30,10 @@ The builds steps are versioned with the code as `YAML`:
 - [selenium-csharp.yml](./selenium-csharp.yml)
 - [puppeteer.yml](./puppeteer.yml)
 
+All builds are also scheduled to run at `2AM AEST` seven days a week. This is to prevent the tests from rotting when no changes are committed to them.
+
 [selenium-webdriver]: https://www.seleniumhq.org/projects/webdriver/
 [puppeteer]: https://developers.google.com/web/tools/puppeteer/
 [github]: https://github.com/
 [azure-pipelines]: https://azure.microsoft.com/en-au/services/devops/pipelines/
+[github-2fa]: https://help.github.com/articles/securing-your-account-with-two-factor-authentication-2fa/

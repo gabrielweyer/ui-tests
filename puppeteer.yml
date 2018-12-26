@@ -29,6 +29,14 @@ steps:
     cd puppeteer
     yarn test
   env:
-    GITHUB_SIGNINCREDENTIALS_USERNAME: $(GitHub.SignInCredentials.Username)
-    GITHUB_SIGNINCREDENTIALS_PASSWORD: $(GitHub.SignInCredentials.Password)
+    GABO_GITHUB_SIGNINCREDENTIALS_USERNAME: $(GitHub.SignInCredentials.Username)
+    GABO_GITHUB_SIGNINCREDENTIALS_PASSWORD: $(GitHub.SignInCredentials.Password)
+    GABO_SCREENSHOTS_ABSOLUTEPATH: $(Build.StagingDirectory)
   displayName: yarn test
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'FailedTestsScreenshots'
+    targetPath: $(Build.StagingDirectory)
+  condition: failed()
+  displayName: Upload screenshot(s) after test(s) failure

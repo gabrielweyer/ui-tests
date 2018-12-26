@@ -12,7 +12,7 @@ I'm using environment variables to expose secrets to the tests.
 
 Test `GitHub` account:
 
-- `GITHUB_SIGNINCREDENTIALS_USERNAME` either the username or the email address
-- `GITHUB_SIGNINCREDENTIALS_PASSWORD`
+- `GABO_GITHUB_SIGNINCREDENTIALS_USERNAME` either the username or the email address
+- `GABO_GITHUB_SIGNINCREDENTIALS_PASSWORD`
 
 [npm-puppeteer]: https://www.npmjs.com/package/puppeteer

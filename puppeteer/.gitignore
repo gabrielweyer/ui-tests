@@ -1,3 +1,7 @@
 # npm packages
 
 node_modules/
+
+# Failed tests screenshots
+
+screenshots/

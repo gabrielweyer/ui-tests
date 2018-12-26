@@ -25,8 +25,10 @@ steps:
     Arguments: install
     ProjectDirectory: puppeteer
 
-- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+- bash: |
+    cd puppeteer
+    yarn test
+  env:
+    GITHUB_SIGNINCREDENTIALS_USERNAME: $(GitHub.SignInCredentials.Password)
+    GITHUB_SIGNINCREDENTIALS_PASSWORD: $(GitHub.SignInCredentials.Username)
   displayName: yarn test
-  inputs:
-    Arguments: test
-    ProjectDirectory: puppeteer

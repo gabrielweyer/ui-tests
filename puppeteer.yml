@@ -29,6 +29,6 @@ steps:
     cd puppeteer
     yarn test
   env:
-    GITHUB_SIGNINCREDENTIALS_USERNAME: $(GitHub.SignInCredentials.Password)
-    GITHUB_SIGNINCREDENTIALS_PASSWORD: $(GitHub.SignInCredentials.Username)
+    GITHUB_SIGNINCREDENTIALS_USERNAME: $(GitHub.SignInCredentials.Username)
+    GITHUB_SIGNINCREDENTIALS_PASSWORD: $(GitHub.SignInCredentials.Password)
   displayName: yarn test

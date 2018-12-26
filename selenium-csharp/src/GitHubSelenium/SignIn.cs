@@ -37,7 +37,7 @@ namespace GitHubSelenium
             var usernameInput = _browser.WaitUntilElement(By.Id("login_field"), TimeSpan.FromSeconds(5));
             usernameInput.SendKeys(options.Username);
 
-            var passwordInput = _browser.WaitUntilElement(By.Id("password"), TimeSpan.FromSeconds(0.5));
+            var passwordInput = _browser.WaitUntilElement(By.Id("passwword"), TimeSpan.FromSeconds(0.5));
             passwordInput.SendKeys(options.Password);
 
             var submitButton = _browser.WaitUntilElement(By.CssSelector("input[type=\"submit\"]"), TimeSpan.FromSeconds(0.5));

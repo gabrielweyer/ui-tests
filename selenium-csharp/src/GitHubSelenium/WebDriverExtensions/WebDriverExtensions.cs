@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Xunit.Abstractions;
 
 namespace GitHubSelenium.WebDriverExtensions
 {
@@ -21,13 +20,12 @@ namespace GitHubSelenium.WebDriverExtensions
             return wait.Until(b => b.FindElements(by));
         }
 
-        public static void TakeScreenshot(this IWebDriver browser, string filenameNoPathNoExtension, ITestOutputHelper outputHelper)
+        public static void TakeScreenshot(this IWebDriver browser, string filenameNoPathNoExtension)
         {
             const string screenshotsPath = "./screenshots/";
 
             var screenshot = (browser as ITakesScreenshot)?.GetScreenshot();
-            var createdDirectory = Directory.CreateDirectory(screenshotsPath);
-            outputHelper.WriteLine($"Created directory: {createdDirectory.FullName}");
+            Directory.CreateDirectory(screenshotsPath);
             screenshot?.SaveAsFile($"{screenshotsPath}{filenameNoPathNoExtension}.png", ScreenshotImageFormat.Png);
         }
     }

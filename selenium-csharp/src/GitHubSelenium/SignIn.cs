@@ -5,18 +5,15 @@ using GitHubSelenium.Options;
 using GitHubSelenium.WebDriverExtensions;
 using OpenQA.Selenium;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace GitHubSelenium
 {
     public class SignIn : IDisposable
     {
-        private readonly ITestOutputHelper _outputHelper;
         private readonly IWebDriver _browser;
 
-        public SignIn(ITestOutputHelper outputHelper)
+        public SignIn()
         {
-            _outputHelper = outputHelper;
             _browser = BrowserLauncher.GetChrome();
         }
 
@@ -57,7 +54,7 @@ namespace GitHubSelenium
             }
             catch (Exception)
             {
-                _browser.TakeScreenshot("sign-in", _outputHelper);
+                _browser.TakeScreenshot("sign-in");
                 throw;
             }
         }

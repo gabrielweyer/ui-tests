@@ -16,7 +16,7 @@ steps:
 
 - bash: |
     cd selenium-csharp/src/GitHubSelenium
-    dotnet test --output $(Build.StagingDirectory)
+    dotnet test --logger trx --results-directory $(Common.TestResultsDirectory) --output $(Build.StagingDirectory)
   env:
     GitHub__SignInCredentials__Password: $(GitHub.SignInCredentials.Password)
     GitHub__SignInCredentials__Username: $(GitHub.SignInCredentials.Username)
@@ -28,3 +28,11 @@ steps:
     targetPath: '$(Build.StagingDirectory)/screenshots'
   condition: failed()
   displayName: Upload screenshot(s) after test failure
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '*.trx'
+    testResultsFormat: 'xUnit'
+    searchFolder: $(Common.TestResultsDirectory)
+    publishRunAttachments: true
+  condition: succeededOrFailed()

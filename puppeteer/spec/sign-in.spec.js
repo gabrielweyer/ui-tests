@@ -21,6 +21,8 @@ describe('SignIn', () => {
       it('Then display home page', async() => {
         // Act
 
+        console.log('config.gitHub.signInCredentials.username', config.gitHub.signInCredentials.username);
+
         await page.goto('https://github.com/login');
         await page.waitForSelector('input[type="submit"]', { visible: true, timeout: 5000 });
         await page.type('#login_field', config.gitHub.signInCredentials.username);

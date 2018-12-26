@@ -37,7 +37,7 @@ describe('SignIn', () => {
             .evaluate(selector => Array.from(document.querySelectorAll(selector))
             .map(l => l.innerText.toLowerCase()), headerLinksSelector);
 
-          expect(headerLinksText).to.include('pull2 requests');
+          expect(headerLinksText).to.include('pull requests');
         } catch (error) {
           await puppeteerExtensions.saveScreenshot(page, 'sign-in');
           throw error;

@@ -27,11 +27,12 @@ steps:
 
 - bash: |
     cd puppeteer
-    yarn test
+    yarn test-ci
   env:
     GABO_GITHUB_SIGNINCREDENTIALS_USERNAME: $(GitHub.SignInCredentials.Username)
     GABO_GITHUB_SIGNINCREDENTIALS_PASSWORD: $(GitHub.SignInCredentials.Password)
     GABO_SCREENSHOTS_ABSOLUTEPATH: $(Build.StagingDirectory)
+    MOCHA_FILE: '$(Common.TestResultsDirectory)/test-results.xml'
   displayName: yarn test
 
 - task: PublishPipelineArtifact@0
@@ -40,3 +41,12 @@ steps:
     targetPath: $(Build.StagingDirectory)
   condition: failed()
   displayName: Upload screenshot(s) after test(s) failure
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '*.xml'
+    testResultsFormat: 'JUnit'
+    searchFolder: $(Common.TestResultsDirectory)
+    publishRunAttachments: true
+  condition: succeededOrFailed()
+  displayName: Publish tests results

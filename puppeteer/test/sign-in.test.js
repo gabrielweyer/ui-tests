@@ -1,3 +1,4 @@
+const expect = require('chai').expect;
 const puppeteer = require('puppeteer');
 const config = require('../config');
 
@@ -5,20 +6,20 @@ describe('SignIn', () => {
   let browser;
   let page;
 
-  beforeAll(async () => {
+  before(async function() {
     browser = await puppeteer.launch({headless: true});
     page = await browser.newPage();
   });
 
-  afterAll(async () => {
+  after(async function() {
     if (browser) {
       await browser.close();
     }
   });
 
-  describe('Given navigate to sign-in page', () => {
-    describe('And given enter correct credentials', () => {
-      it('Then display home page', async() => {
+  describe('Given navigate to sign-in page', function() {
+    describe('And given enter correct credentials', function() {
+      it('Then display home page', async function() {
         // Act
 
         await page.goto('https://github.com/login');
@@ -35,7 +36,7 @@ describe('SignIn', () => {
           .evaluate(selector => Array.from(document.querySelectorAll(selector))
           .map(l => l.innerText.toLowerCase()), headerLinksSelector);
 
-        expect(headerLinksText).toContain('pull requests');
+        expect(headerLinksText).to.include('pull requests');
       });
     });
   });

@@ -17,6 +17,11 @@ Some tests require a `GitHub` account to run. I recommend creating a testing one
 
 The configuration of secrets is explained in the [Selenium C#](./selenium-csharp/README.md) and [Puppeteer](./puppeteer/README.md) `READMEs`.
 
+## Tests
+
+- Load a user profile and assert the full name
+- Sign-in with a test user and assert that the "Pull requests" header link is present
+
 ## Continuous Integration
 
 I'm using [Azure pipelines][azure-pipelines] to run the tests on every commit to `master`.

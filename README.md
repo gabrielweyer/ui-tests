@@ -6,7 +6,7 @@ I decided to test [GitHub][github] as this is where this repository is hosted.
 
 Over time I hope to see my tests' brittleness exposed which will give me the opportunity to make them more resilient.
 
-As this project is a learning experience I wouldn't recommend being inspired by it (this is even more true for the `Puppeteer` / `JavaScript` tests where I've no idea what I'm doing :joy_cat:).
+As this project is a learning experience I wouldn't recommend being inspired by it (this is even more true for the `Puppeteer` / `TypeScript` tests where I've no idea what I'm doing :joy_cat:).
 
 - [Selenium WebDriver C# implementation README](./selenium-csharp/README.md)
 - [Puppeteer implementation README](./puppeteer/README.md)
@@ -36,6 +36,17 @@ The builds steps are versioned with the code as `YAML`:
 - [puppeteer.yml](./puppeteer.yml)
 
 All builds are also scheduled to run at `2AM AEST` seven days a week. This is to prevent the tests from rotting when no changes are committed to them.
+
+### Common build properties
+
+- Builds are only triggered when the code changes. The `Puppeteer` build will not trigger when there are changes to the `Selenium C#` tests
+- When a test fail, the test suite takes a screenshot which is then uploaded as an artifact
+- Test results are uploaded to `Azure DevOps` (see screenshot below)
+- Secret variables are passed as environment variables
+
+Test results in `Azure DevOps`:
+
+![Test results in Azure DevOps](./docs/assets/test-results.png)
 
 [selenium-webdriver]: https://www.seleniumhq.org/projects/webdriver/
 [puppeteer]: https://developers.google.com/web/tools/puppeteer/

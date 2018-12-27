@@ -1,11 +1,11 @@
-const expect = require('chai').expect;
-const puppeteer = require('puppeteer');
-const config = require('../config');
-const puppeteerExtensions = require('../puppeteer-extensions');
+import { expect } from 'chai';
+import * as puppeteer from 'puppeteer';
+import { config } from '../config';
+import { saveScreenshot } from '../puppeteer-extensions';
 
 describe('SignIn', () => {
-  let browser;
-  let page;
+  let browser: puppeteer.Browser;
+  let page: puppeteer.Page;
 
   before(async function() {
     browser = await puppeteer.launch({headless: true});
@@ -39,7 +39,7 @@ describe('SignIn', () => {
 
           expect(headerLinksText).to.include('pull requests');
         } catch (error) {
-          await puppeteerExtensions.saveScreenshot(page, 'sign-in');
+          await saveScreenshot(page, 'sign-in');
           throw error;
         }
       });

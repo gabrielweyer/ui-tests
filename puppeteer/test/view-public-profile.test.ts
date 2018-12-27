@@ -1,10 +1,10 @@
-const expect = require('chai').expect;
-const puppeteer = require('puppeteer');
-const config = require('../config');
+import { expect } from 'chai';
+import * as puppeteer from 'puppeteer';
+import {config } from '../config';
 
 describe('ViewPublicProfile', function() {
-  let browser;
-  let page;
+  let browser: puppeteer.Browser;
+  let page: puppeteer.Page;
 
   before(async function() {
     browser = await puppeteer.launch({headless: true});

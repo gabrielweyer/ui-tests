@@ -1,9 +1,8 @@
-const config = require('./config');
-const fs = require('fs');
+import { config } from './config';
+import * as puppeteer from 'puppeteer';
+import * as fs from 'fs';
 
-var exports = module.exports = {};
-
-exports.saveScreenshot = async function(page, filenameNoPathNoExtension) {
+export async function saveScreenshot(page : puppeteer.Page, filenameNoPathNoExtension: string): Promise<void> {
   try {
     fs.mkdirSync(config.screenshotsAbsolutePath)
   } catch (error) {

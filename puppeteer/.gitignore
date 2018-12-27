@@ -5,3 +5,11 @@ node_modules/
 # Failed tests screenshots
 
 screenshots/
+
+# Yarn
+
+yarn-error.log
+
+# JUnit reporter (for Azure DevOps)
+
+test-results.xml

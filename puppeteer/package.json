@@ -1,13 +1,18 @@
 {
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha",
-    "test-ci": "node ./node_modules/mocha/bin/mocha --reporter mocha-junit-reporter"
+    "test": "mocha test/**/*.test.ts",
+    "test-ci": "mocha --reporter mocha-junit-reporter test/**/*.test.ts"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/puppeteer": "^1.11.1",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
-    "puppeteer": "^1.11.0"
+    "puppeteer": "^1.11.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
   },
   "private": true
 }

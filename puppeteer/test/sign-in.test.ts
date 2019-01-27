@@ -8,7 +8,16 @@ describe('SignIn', () => {
   let page: puppeteer.Page;
 
   before(async function() {
-    browser = await puppeteer.launch({headless: true});
+    const options = {
+      headless: true,
+      defaultViewport: {
+        width: 1040,
+        height: 800,
+        isLandscape: true
+      }
+    };
+
+    browser = await puppeteer.launch(options);
     page = await browser.newPage();
   });
 

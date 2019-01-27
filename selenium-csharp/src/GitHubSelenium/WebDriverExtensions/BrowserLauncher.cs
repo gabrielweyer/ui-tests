@@ -13,6 +13,7 @@ namespace GitHubSelenium.WebDriverExtensions
 
             var options = new ChromeOptions();
             options.AddArgument("--headless");
+            options.AddArgument("--window-size=1040,800");
 
             return new ChromeDriver(currentDirectory, options);
         }

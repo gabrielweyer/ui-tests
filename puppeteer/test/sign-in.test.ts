@@ -40,7 +40,7 @@ describe('SignIn', () => {
 
           // Assert
 
-          const headerLinksSelector = 'header .HeaderMenu a.HeaderNavlink';
+          const headerLinksSelector = 'header > div:nth-child(3) a.Header-link';
           await page.waitForSelector(headerLinksSelector, { visible: true, timeout: 5000 });
           const headerLinksText = await page
             .evaluate(selector => Array.from(document.querySelectorAll(selector))

@@ -20,4 +20,4 @@ Test `GitHub` account:
 
 [nuget-selenium-webdriver]: https://www.nuget.org/packages/Selenium.WebDriver/
 [nuget-selenium-chromedriver]: https://www.nuget.org/packages/Selenium.WebDriver.ChromeDriver/
-[secret-manager]: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows#secret-manager
+[secret-manager]: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.0&tabs=windows#secret-manager

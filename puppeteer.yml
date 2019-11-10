@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'Ubuntu-18.04'
 
 trigger:
   branches:
@@ -15,9 +15,9 @@ trigger:
 steps:
 
 - task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
-  displayName: Install Yarn 1.12.3
+  displayName: Install Yarn 1.17.3
   inputs:
-    versionSpec: 1.12.3
+    versionSpec: 1.17.3
 
 - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
   displayName: yarn install

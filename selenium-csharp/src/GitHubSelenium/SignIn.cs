@@ -47,7 +47,7 @@ namespace GitHubSelenium
 
                 // Assert
 
-                var headerLinks = _browser.WaitUntilElements(By.CssSelector("header .HeaderMenu a.HeaderNavlink"), TimeSpan.FromSeconds(5));
+                var headerLinks = _browser.WaitUntilElements(By.CssSelector("header > div:nth-child(3) a.Header-link"), TimeSpan.FromSeconds(5));
                 headerLinks.Should().HaveCountGreaterOrEqualTo(1);
 
                 headerLinks.Select(l => l.Text.ToLowerInvariant()).Should().Contain("pull requests");

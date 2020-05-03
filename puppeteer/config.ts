@@ -1,5 +1,5 @@
-interface GitHubCredentials {
-  username: string;
+interface Credentials {
+  emailAddress: string;
   password: string;
 }
 
@@ -8,31 +8,31 @@ interface PublicProfileConfig {
   expectedFullname: string;
 }
 
-interface GitHubConfig {
+interface GoodreadsConfig {
   publicProfile: PublicProfileConfig;
-  signInCredentials: GitHubCredentials;
+  signInCredentials: Credentials;
 }
 
 interface PuppeteerConfig {
-  gitHub: GitHubConfig;
+  goodreads: GoodreadsConfig;
   screenshotsAbsolutePath: string;
 }
 
-const username: string = process.env.GABO_GITHUB_SIGNINCREDENTIALS_USERNAME;
-const password: string = process.env.GABO_GITHUB_SIGNINCREDENTIALS_PASSWORD;
+const emailAddress: string = process.env.GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS;
+const password: string = process.env.GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD;
 
-if (!(username && password)) {
-  throw new Error('You need to configure "GABO_GITHUB_SIGNINCREDENTIALS_USERNAME" and "GABO_GITHUB_SIGNINCREDENTIALS_PASSWORD", refer to the README: https://github.com/gabrielweyer/ui-tests/blob/master/README.md.');
+if (!(emailAddress && password)) {
+  throw new Error('You need to configure "GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS" and "GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD", refer to the README: https://github.com/gabrielweyer/ui-tests/blob/master/README.md.');
 }
 
 const config: PuppeteerConfig = {
-  gitHub: {
+  goodreads: {
     publicProfile: {
-      username: 'gabrielweyer',
-      expectedFullname: 'Gabriel Weyer'
+      username: 'uitests',
+      expectedFullname: 'UI Tests'
     },
     signInCredentials: {
-      username: username,
+      emailAddress: emailAddress,
       password: password
     }
   },

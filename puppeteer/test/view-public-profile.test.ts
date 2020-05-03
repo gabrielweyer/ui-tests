@@ -19,16 +19,16 @@ describe('ViewPublicProfile', function() {
 
   describe('Given navigate to public profile', function() {
     beforeEach(async function() {
-      await page.goto(`https://github.com/${config.gitHub.publicProfile.username}`);
+      await page.goto(`https://www.goodreads.com/${config.goodreads.publicProfile.username}`);
     });
 
     it('Then display full name', async function() {
-      const fullnameSelector = '.vcard-fullname';
+      const fullnameSelector = '#profileNameTopHeading';
 
       await page.waitForSelector(fullnameSelector, { visible: true });
       const actualFullname = await page.evaluate((selector) => document.querySelector(selector).innerText, fullnameSelector);
 
-      expect(actualFullname).to.equal(config.gitHub.publicProfile.expectedFullname);
+      expect(actualFullname).to.equal(config.goodreads.publicProfile.expectedFullname);
     });
   });
 });

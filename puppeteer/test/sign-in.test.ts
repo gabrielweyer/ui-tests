@@ -32,21 +32,23 @@ describe('SignIn', () => {
       it('Then display home page', async function() {
         try {
           // Act
-          await page.goto('https://github.com/login');
-          await page.waitForSelector('input[type="submit"]', { visible: true, timeout: 5000 });
-          await page.type('#login_field', config.gitHub.signInCredentials.username);
-          await page.type('#password', config.gitHub.signInCredentials.password);
-          await page.click('input[type="submit"]');
+          const submitButtonSelector = 'input[type="submit"]';
+
+          await page.goto('https://www.goodreads.com/user/sign_in');
+          await page.waitForSelector(submitButtonSelector, { visible: true, timeout: 5000 });
+          await page.type('#user_email', config.goodreads.signInCredentials.emailAddress);
+          await page.type('#user_password', config.goodreads.signInCredentials.password);
+          await page.click(submitButtonSelector);
 
           // Assert
 
-          const headerLinksSelector = 'header > div:nth-child(3) a.Header-link';
+          const headerLinksSelector = '.siteHeader__primaryNavSeparateLine > .siteHeader__menuList a.siteHeader__topLevelLink';
           await page.waitForSelector(headerLinksSelector, { timeout: 5000 });
           const headerLinksText = await page
             .evaluate(selector => Array.from(document.querySelectorAll(selector))
             .map(l => l.innerText.toLowerCase()), headerLinksSelector);
 
-          expect(headerLinksText).to.include('pull requests');
+          expect(headerLinksText).to.include('my books');
         } catch (error) {
           await saveScreenshot(page, 'sign-in');
           throw error;

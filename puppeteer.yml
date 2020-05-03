@@ -15,9 +15,9 @@ trigger:
 steps:
 
 - task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
-  displayName: Install Yarn 1.17.3
+  displayName: Install Yarn 1.22.4
   inputs:
-    versionSpec: 1.17.3
+    versionSpec: 1.22.4
 
 - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
   displayName: yarn install
@@ -26,14 +26,14 @@ steps:
     ProjectDirectory: puppeteer
 
 - bash: |
-    cd puppeteer
     yarn test-ci
   env:
-    GABO_GITHUB_SIGNINCREDENTIALS_USERNAME: $(GitHub.SignInCredentials.Username)
-    GABO_GITHUB_SIGNINCREDENTIALS_PASSWORD: $(GitHub.SignInCredentials.Password)
+    GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS: $(Goodreads.SignInCredentials.EmailAddress)
+    GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD: $(Goodreads.SignInCredentials.Password)
     GABO_SCREENSHOTS_ABSOLUTEPATH: $(Build.StagingDirectory)
     MOCHA_FILE: '$(Common.TestResultsDirectory)/test-results.xml'
   displayName: yarn test
+  workingDirectory: puppeteer
 
 - task: PublishPipelineArtifact@0
   inputs:

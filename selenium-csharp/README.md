@@ -11,12 +11,16 @@
 
 ## Secrets ##
 
-I'm using the [Secret Manager][secret-manager] to store secrets locally.
+I'm using the [Secret Manager][secret-manager] to store secrets locally. The code is expecting the following secrets to be set:
 
-Test `GitHub` account:
+- `Goodreads:SignInCredentials:EmailAddress`
+- `Goodreads:SignInCredentials:Password`
 
-- `GitHub:SignInCredentials:Username` either the username or the email address
-- `GitHub:SignInCredentials:Password`
+You can set secrets by issuing the below command in the project directory:
+
+```powershell
+dotnet user-secrets set Goodreads:SignInCredentials:EmailAddress "your.email@address.com"
+```
 
 [nuget-selenium-webdriver]: https://www.nuget.org/packages/Selenium.WebDriver/
 [nuget-selenium-chromedriver]: https://www.nuget.org/packages/Selenium.WebDriver.ChromeDriver/

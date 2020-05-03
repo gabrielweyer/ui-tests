@@ -1,9 +1,9 @@
-namespace GitHubSelenium.Options
+namespace SeleniumCSharp.Options
 {
-    public class GitHubOptions
+    public class GoodreadsOptions
     {
         public PublicProfile PublicProfile { get; set; }
-        public GitHubCredentials SignInCredentials { get; set; }
+        public Credentials SignInCredentials { get; set; }
     }
 
     public class PublicProfile
@@ -12,9 +12,9 @@ namespace GitHubSelenium.Options
         public string ExpectedFullname { get; set; }
     }
 
-    public class GitHubCredentials
+    public class Credentials
     {
-        public string Username { get; set; }
+        public string EmailAddress { get; set; }
         public string Password { get; set; }
     }
 }

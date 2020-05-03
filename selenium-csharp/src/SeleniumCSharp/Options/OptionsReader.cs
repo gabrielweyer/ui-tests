@@ -1,11 +1,11 @@
 using System;
 using Microsoft.Extensions.Configuration;
 
-namespace GitHubSelenium.Options
+namespace SeleniumCSharp.Options
 {
     public class OptionsReader
     {
-        public static readonly Lazy<GitHubOptions> GitHub = new Lazy<GitHubOptions>(() =>
+        public static readonly Lazy<GoodreadsOptions> Goodreads = new Lazy<GoodreadsOptions>(() =>
         {
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
@@ -13,7 +13,7 @@ namespace GitHubSelenium.Options
                 .AddEnvironmentVariables()
                 .Build();
 
-            return config.GetSection("GitHub").Get<GitHubOptions>();
+            return config.GetSection("Goodreads").Get<GoodreadsOptions>();
         });
     }
 }

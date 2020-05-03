@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F458AF86-4715-45A1-BFB8-B467609B5373}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubSelenium", "src\GitHubSelenium\GitHubSelenium.csproj", "{AA98FF47-F281-4F9B-ADE3-A758DA4D6BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumCSharp", "src\SeleniumCSharp\SeleniumCSharp.csproj", "{AA98FF47-F281-4F9B-ADE3-A758DA4D6BCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41D8818C-FD03-4186-9EE6-DCBF7F29AD9F}"
 	ProjectSection(SolutionItems) = preProject

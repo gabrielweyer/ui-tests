@@ -2,25 +2,25 @@
 
 I want to learn how to write UI tests. [Selenium WebDriver][selenium-webdriver] seems to be the most commonly used platform. I also stumbled upon [Puppeteer][puppeteer] and decided to use both libraries.
 
-I decided to test [GitHub][github] as this is where this repository is hosted.
+I decided to test [Goodreads][github] as this is one of the few sites I use that does not require Multi-Factor Authentication.
 
-Over time I hope to see my tests' brittleness exposed which will give me the opportunity to make them more resilient.
+Over time I hope to see my tests' brittleness exposed which will give me the opportunity to make them more resilient. This example is a bit contrived as teams commonly use data attributes to ease `UI` testing.
 
 As this project is a learning experience I wouldn't recommend being inspired by it (this is even more true for the `Puppeteer` / `TypeScript` tests where I've no idea what I'm doing :joy_cat:).
 
-- [Selenium WebDriver C# implementation README](./selenium-csharp/README.md)
+- [Selenium C# implementation README](./selenium-csharp/README.md)
 - [Puppeteer implementation README](./puppeteer/README.md)
 
 ## Configuration
 
-Some tests require a `GitHub` account to run. I recommend creating a testing one as - hopefully - you've got `2FA` enabled on your personal account (if not please follow [Securing your account with two-factor authentication (2FA)][github-2fa]).
+Some tests require a `Goodreads` account to run.
 
 The configuration of secrets is explained in the [Selenium C#](./selenium-csharp/README.md) and [Puppeteer](./puppeteer/README.md) `READMEs`.
 
 ## Tests
 
 - Load a user profile and assert the full name
-- Sign-in with a test user and assert that the "Pull requests" header link is present
+- Sign-in with a test user and assert that the "My Books" header link is present
 
 ## Continuous Integration
 
@@ -51,5 +51,5 @@ Test results in `Azure DevOps`:
 [selenium-webdriver]: https://www.seleniumhq.org/projects/webdriver/
 [puppeteer]: https://developers.google.com/web/tools/puppeteer/
 [github]: https://github.com/
+[goodreads]: https://www.goodreads.com/
 [azure-pipelines]: https://azure.microsoft.com/en-au/services/devops/pipelines/
-[github-2fa]: https://help.github.com/articles/securing-your-account-with-two-factor-authentication-2fa/

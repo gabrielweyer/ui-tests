@@ -1,10 +1,10 @@
 using System;
-using GitHubSelenium.Options;
-using GitHubSelenium.WebDriverExtensions;
 using OpenQA.Selenium;
+using SeleniumCSharp.Options;
+using SeleniumCSharp.WebDriverExtensions;
 using Xunit;
 
-namespace GitHubSelenium
+namespace SeleniumCSharp
 {
     public class ViewPublicProfile : IDisposable
     {
@@ -20,12 +20,12 @@ namespace GitHubSelenium
         {
             // Arrange
 
-            var options = OptionsReader.GitHub.Value.PublicProfile;
+            var options = OptionsReader.Goodreads.Value.PublicProfile;
 
             // Act
 
-            _browser.Navigate().GoToUrl(new Uri($"https://github.com/{options.Username}"));
-            var fullnameElement = _browser.WaitUntilElement(By.CssSelector(".vcard-fullname"), TimeSpan.FromSeconds(5));
+            _browser.Navigate().GoToUrl(new Uri($"https://www.goodreads.com/{options.Username}"));
+            var fullnameElement = _browser.WaitUntilElement(By.CssSelector("#profileNameTopHeading"), TimeSpan.FromSeconds(5));
 
             // Assert
 

@@ -23,8 +23,8 @@ steps:
 - bash: |
     dotnet test --logger trx --results-directory $(Common.TestResultsDirectory) --output $(Build.StagingDirectory)
   env:
-    Goodreads__SignInCredentials__Password: $(Goodreads.SignInCredentials.Password)
     Goodreads__SignInCredentials__EmailAddress: $(Goodreads.SignInCredentials.EmailAddress)
+    Goodreads__SignInCredentials__Password: $(Goodreads.SignInCredentials.Password)
   displayName: Run tests
   workingDirectory: selenium-csharp/src/SeleniumCSharp
 

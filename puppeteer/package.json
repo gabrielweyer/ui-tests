@@ -3,6 +3,11 @@
     "test": "mocha test/**/*.test.ts",
     "test-ci": "mocha --reporter mocha-junit-reporter test/**/*.test.ts"
   },
+  "mocha": {
+    "require": "ts-node/register",
+    "timeout": 30000,
+    "slow": 20000
+  },
   "devDependencies": {
     "@types/chai": "4.2.11",
     "@types/mocha": "7.0.2",

@@ -21,6 +21,7 @@ steps:
   workingDirectory: $(Build.StagingDirectory)
 
 - bash: |
+    mkdir $(Build.StagingDirectory)/screenshots
     dotnet test --logger trx --results-directory $(Common.TestResultsDirectory) --output $(Build.StagingDirectory)
   env:
     Goodreads__SignInCredentials__EmailAddress: $(Goodreads.SignInCredentials.EmailAddress)

@@ -31,7 +31,6 @@ steps:
   displayName: Install libgbm1 (required by Puppeteer 3)
 
 - bash: |
-    mkdir $(Build.StagingDirectory)/screenshots
     yarn test-ci
   env:
     GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS: $(Goodreads.SignInCredentials.EmailAddress)

@@ -27,7 +27,7 @@ namespace SeleniumCSharp
             if (string.IsNullOrWhiteSpace(options?.EmailAddress) ||
                 string.IsNullOrWhiteSpace(options.Password))
             {
-                throw new ArgumentException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/master/README.md.");
+                throw new ArgumentException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
             }
 
             try

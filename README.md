@@ -24,11 +24,11 @@ The configuration of secrets is explained in the [Selenium C#](./selenium-csharp
 
 ## Continuous Integration
 
-I'm using [Azure pipelines][azure-pipelines] to run the tests on every commit to `master`.
+I'm using [Azure pipelines][azure-pipelines] to run the tests on every commit to `main`.
 
-[![Build Status](https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Selenium%20C%23?branchName=master&label=Selenium%20C%23)](https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=11)
+[![Build Status](https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Selenium%20C%23?branchName=main&label=Selenium%20C%23)](https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=11)
 
-[![Build Status](https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Puppeteer?branchName=master&label=Puppeteer)](https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=10)
+[![Build Status](https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Puppeteer?branchName=main&label=Puppeteer)](https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=10)
 
 The builds steps are versioned with the code as `YAML`:
 

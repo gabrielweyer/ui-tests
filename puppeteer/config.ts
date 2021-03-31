@@ -22,7 +22,7 @@ const emailAddress: string = process.env.GABO_GOODREADS_SIGNINCREDENTIALS_EMAILA
 const password: string = process.env.GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD;
 
 if (!(emailAddress && password)) {
-  throw new Error('You need to configure "GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS" and "GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD", refer to the README: https://github.com/gabrielweyer/ui-tests/blob/master/README.md.');
+  throw new Error('You need to configure "GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS" and "GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD", refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.');
 }
 
 const config: PuppeteerConfig = {

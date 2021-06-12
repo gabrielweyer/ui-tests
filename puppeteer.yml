@@ -12,6 +12,14 @@ trigger:
     exclude:
     - puppeteer/README.md
 
+pr:
+  paths:
+    include:
+    - puppeteer/*
+    - puppeteer.yml
+    exclude:
+    - puppeteer/README.md
+
 steps:
 
 - task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2

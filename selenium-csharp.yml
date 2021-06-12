@@ -12,6 +12,14 @@ trigger:
     exclude:
     - selenium-csharp/README.md
 
+pr:
+  paths:
+    include:
+    - selenium-csharp/*
+    - selenium-csharp.yml
+    exclude:
+    - selenium-csharp/README.md
+
 steps:
 
 - bash: |

@@ -35,7 +35,7 @@ The builds steps are versioned with the code as `YAML`:
 - [selenium-csharp.yml](./selenium-csharp.yml)
 - [puppeteer.yml](./puppeteer.yml)
 
-All builds are also scheduled to run at `2AM AEST` seven days a week. This is to prevent the tests from rotting when no changes are committed to them.
+All builds are also scheduled to run at 5:00 AM Australia/Melbourne seven days a week. This is to prevent the tests from rotting when no changes are committed to them.
 
 ### Common build properties
 

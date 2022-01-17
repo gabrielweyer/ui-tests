@@ -4,37 +4,36 @@ using SeleniumCSharp.Options;
 using SeleniumCSharp.WebDriverExtensions;
 using Xunit;
 
-namespace SeleniumCSharp
+namespace SeleniumCSharp;
+
+public class ViewPublicProfile : IDisposable
 {
-    public class ViewPublicProfile : IDisposable
+    private readonly IWebDriver _browser;
+
+    public ViewPublicProfile()
     {
-        private readonly IWebDriver _browser;
+        _browser = BrowserLauncher.GetChrome();
+    }
 
-        public ViewPublicProfile()
-        {
-            _browser = BrowserLauncher.GetChrome();
-        }
+    [Fact]
+    public void Scenario()
+    {
+        // Arrange
 
-        [Fact]
-        public void Scenario()
-        {
-            // Arrange
+        var options = OptionsReader.Goodreads.Value.PublicProfile;
 
-            var options = OptionsReader.Goodreads.Value.PublicProfile;
+        // Act
 
-            // Act
+        _browser.Navigate().GoToUrl(new Uri($"https://www.goodreads.com/{options.Username}"));
+        var fullnameElement = _browser.WaitUntilElement(By.CssSelector("#profileNameTopHeading"), TimeSpan.FromSeconds(5));
 
-            _browser.Navigate().GoToUrl(new Uri($"https://www.goodreads.com/{options.Username}"));
-            var fullnameElement = _browser.WaitUntilElement(By.CssSelector("#profileNameTopHeading"), TimeSpan.FromSeconds(5));
+        // Assert
 
-            // Assert
+        Assert.Equal(options.ExpectedFullname, fullnameElement.Text);
+    }
 
-            Assert.Equal(options.ExpectedFullname, fullnameElement.Text);
-        }
-
-        public void Dispose()
-        {
-            _browser?.Dispose();
-        }
+    public void Dispose()
+    {
+        _browser?.Dispose();
     }
 }

@@ -6,63 +6,62 @@ using SeleniumCSharp.Options;
 using SeleniumCSharp.WebDriverExtensions;
 using Xunit;
 
-namespace SeleniumCSharp
+namespace SeleniumCSharp;
+
+public class SignIn : IDisposable
 {
-    public class SignIn : IDisposable
+    private readonly IWebDriver _browser;
+
+    public SignIn()
     {
-        private readonly IWebDriver _browser;
+        _browser = BrowserLauncher.GetChrome();
+    }
 
-        public SignIn()
+    [Fact]
+    public void Scenario()
+    {
+        // Arrange
+
+        var options = OptionsReader.Goodreads.Value.SignInCredentials;
+
+        if (string.IsNullOrWhiteSpace(options?.EmailAddress) ||
+            string.IsNullOrWhiteSpace(options.Password))
         {
-            _browser = BrowserLauncher.GetChrome();
+            throw new ArgumentException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
         }
 
-        [Fact]
-        public void Scenario()
+        try
         {
-            // Arrange
+            // Act
 
-            var options = OptionsReader.Goodreads.Value.SignInCredentials;
+            _browser.Navigate().GoToUrl("https://www.goodreads.com/user/sign_in");
 
-            if (string.IsNullOrWhiteSpace(options?.EmailAddress) ||
-                string.IsNullOrWhiteSpace(options.Password))
-            {
-                throw new ArgumentException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
-            }
+            var emailAddressInput = _browser.WaitUntilElement(By.Id("user_email"), TimeSpan.FromSeconds(5));
+            emailAddressInput.SendKeys(options.EmailAddress);
 
-            try
-            {
-                // Act
+            var passwordInput = _browser.WaitUntilElement(By.Id("user_password"), TimeSpan.FromSeconds(0.5));
+            passwordInput.SendKeys(options.Password);
 
-                _browser.Navigate().GoToUrl("https://www.goodreads.com/user/sign_in");
+            var submitButton = _browser.WaitUntilElement(By.CssSelector("input[type=\"submit\"]"), TimeSpan.FromSeconds(0.5));
+            submitButton.Click();
 
-                var emailAddressInput = _browser.WaitUntilElement(By.Id("user_email"), TimeSpan.FromSeconds(5));
-                emailAddressInput.SendKeys(options.EmailAddress);
+            // Assert
 
-                var passwordInput = _browser.WaitUntilElement(By.Id("user_password"), TimeSpan.FromSeconds(0.5));
-                passwordInput.SendKeys(options.Password);
+            const string headerSelector = ".siteHeader__primaryNavSeparateLine > .siteHeader__menuList a.siteHeader__topLevelLink";
+            var headerLinks = _browser.WaitUntilAllEnabled(headerSelector, TimeSpan.FromSeconds(5));
+            headerLinks.Should().HaveCountGreaterOrEqualTo(1);
 
-                var submitButton = _browser.WaitUntilElement(By.CssSelector("input[type=\"submit\"]"), TimeSpan.FromSeconds(0.5));
-                submitButton.Click();
-
-                // Assert
-
-                const string headerSelector = ".siteHeader__primaryNavSeparateLine > .siteHeader__menuList a.siteHeader__topLevelLink";
-                var headerLinks = _browser.WaitUntilAllEnabled(headerSelector, TimeSpan.FromSeconds(5));
-                headerLinks.Should().HaveCountGreaterOrEqualTo(1);
-
-                headerLinks.Select(l => l.Text.ToLowerInvariant()).Should().Contain("my books");
-            }
-            catch (Exception)
-            {
-                _browser.TakeScreenshot("sign-in");
-                throw;
-            }
+            headerLinks.Select(l => l.Text.ToLowerInvariant()).Should().Contain("my books");
         }
-
-        public void Dispose()
+        catch (Exception)
         {
-            _browser?.Dispose();
+            _browser.TakeScreenshot("sign-in");
+            throw;
         }
+    }
+
+    public void Dispose()
+    {
+        _browser?.Dispose();
     }
 }

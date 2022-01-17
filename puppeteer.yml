@@ -22,16 +22,14 @@ pr:
 
 steps:
 
-- task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
-  displayName: Install Yarn 1.22.4
-  inputs:
-    versionSpec: 1.22.4
+- bash: |
+    yarn set version berry
+  displayName: 'Use Yarn Modern'
 
-- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
-  displayName: yarn install
-  inputs:
-    Arguments: install
-    ProjectDirectory: puppeteer
+- bash: |
+    yarn install
+  displayName: 'yarn install'
+  workingDirectory: puppeteer
 
 - bash: |
     sudo apt-get update

@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using FluentAssertions;
 using OpenQA.Selenium;
 using SeleniumCSharp.Options;

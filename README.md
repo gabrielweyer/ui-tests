@@ -24,18 +24,19 @@ The configuration of secrets is explained in the [Selenium C#](./selenium-csharp
 
 ## Continuous Integration
 
-I'm using [Azure pipelines][azure-pipelines] to run the tests on every commit to `main`.
+I'm using [Azure pipelines][azure-pipelines] and [GitHub Actions][github-actions] to run the tests on every commit to `main`.
 
-[![Build Status](https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Selenium%20C%23?branchName=main&label=Selenium%20C%23)](https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=11)
-
-[![Build Status](https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Puppeteer?branchName=main&label=Puppeteer)](https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=10)
+| | Azure DevOps | GitHub Actions |
+| - | - | - |
+| Selenium C# | [![Build Status][azure-devops-selenium-shield]][azure-devops-selenium] | N/A |
+| Puppeteer | [![Build Status][azure-devops-puppeteer-shield]][azure-devops-puppeteer] | [![Build Status][github-actions-puppeteer-shield]][github-actions-puppeteer] |
 
 The builds steps are versioned with the code as `YAML`:
 
-- [selenium-csharp.yml](./selenium-csharp.yml)
-- [puppeteer.yml](./puppeteer.yml)
+- [Azure DevOps selenium-csharp.yml](./selenium-csharp.yml)
+- [Azure DevOps puppeteer.yml](./puppeteer.yml) - [GitHub Actions puppeteer.yml](./.github/workflows/puppeteer.yml)
 
-All builds are also scheduled to run at 5:00 AM Australia/Melbourne seven days a week. This is to prevent the tests from rotting when no changes are committed to them.
+All Azure DevOps builds are also scheduled to run at 5:00 AM Australia/Melbourne seven days a week. This is to prevent the tests from rotting when no changes are committed to them.
 
 ### Common build properties
 
@@ -53,3 +54,10 @@ Test results in `Azure DevOps`:
 [github]: https://github.com/
 [goodreads]: https://www.goodreads.com/
 [azure-pipelines]: https://azure.microsoft.com/en-au/services/devops/pipelines/
+[azure-devops-selenium-shield]: https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Selenium%20C%23?branchName=main&label=Selenium%20C%23
+[azure-devops-selenium]: https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=11
+[azure-devops-puppeteer-shield]: https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Puppeteer?branchName=main&label=Puppeteer
+[azure-devops-puppeteer]: https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=10
+[github-actions-puppeteer-shield]: https://github.com/gabrielweyer/ui-tests/actions/workflows/puppeteer.yml/badge.svg
+[github-actions-puppeteer]: https://github.com/gabrielweyer/ui-tests/actions/workflows/puppeteer.yml
+[github-actions]: https://github.com/features/actions

@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'Ubuntu-20.04'
+  vmImage: ubuntu-20.04
 
 trigger:
   branches:
@@ -27,12 +27,6 @@ steps:
     sudo apt install ./google-chrome-stable_current_amd64.deb
   displayName: Install latest Chrome
   workingDirectory: $(Build.StagingDirectory)
-
-- task: UseDotNet@2
-  displayName: Use .NET 6.0
-  inputs:
-    packageType: 'sdk'
-    version: '6.0.x'
 
 - bash: |
     mkdir $(Build.StagingDirectory)/screenshots

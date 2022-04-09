@@ -41,7 +41,6 @@ describe('SignIn', () => {
           await page.click(submitButtonSelector);
 
           // Assert
-
           const headerLinksSelector = '.siteHeader__primaryNavSeparateLine > .siteHeader__menuList a.siteHeader__topLevelLink';
           await page.waitForSelector(headerLinksSelector, { timeout: 5000 });
           const headerLinksText = await page

@@ -18,17 +18,22 @@ public class ViewPublicProfile : IDisposable
     public void Scenario()
     {
         // Arrange
-
         var options = OptionsReader.Goodreads.Value.PublicProfile;
 
-        // Act
+        try
+        {
+            // Act
+            _browser.Navigate().GoToUrl(new Uri($"https://www.goodreads.com/{options.Username}"));
+            var fullnameElement = _browser.WaitUntilElement(By.CssSelector("#profileNameTopHeading"), TimeSpan.FromSeconds(5));
 
-        _browser.Navigate().GoToUrl(new Uri($"https://www.goodreads.com/{options.Username}"));
-        var fullnameElement = _browser.WaitUntilElement(By.CssSelector("#profileNameTopHeading"), TimeSpan.FromSeconds(5));
-
-        // Assert
-
-        Assert.Equal(options.ExpectedFullname, fullnameElement.Text);
+            // Assert
+            Assert.Equal(options.ExpectedFullname, fullnameElement.Text);
+        }
+        catch (Exception)
+        {
+            _browser.TakeScreenshot("public-profile");
+            throw;
+        }
     }
 
     public void Dispose()

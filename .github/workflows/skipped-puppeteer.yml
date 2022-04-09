@@ -5,12 +5,14 @@ on:
     branches:
       - main
     paths-ignore:
+      - .github/workflows/puppeteer.yml
       - 'puppeteer/**'
       - '!puppeteer/README.md'
   pull_request:
     branches:
       - main
     paths-ignore:
+      - .github/workflows/puppeteer.yml
       - 'puppeteer/**'
       - '!puppeteer/README.md'
 

@@ -5,12 +5,14 @@ on:
     branches:
       - main
     paths-ignore:
+      - .github/workflows/selenium-csharp.yml
       - 'selenium-csharp/**'
       - '!selenium-csharp/README.md'
   pull_request:
     branches:
       - main
     paths-ignore:
+      - .github/workflows/selenium-csharp.yml
       - 'selenium-csharp/**'
       - '!selenium-csharp/README.md'
 

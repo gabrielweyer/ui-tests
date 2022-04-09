@@ -6,11 +6,6 @@ on:
       - main
     paths:
       - 'selenium-csharp/**'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'selenium-csharp/**'
   schedule:
     - cron: '22 21 * * 5'
 

@@ -1,0 +1,53 @@
+name: Selenium C#
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'selenium-csharp/**'
+      - '!selenium-csharp/README.md'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'selenium-csharp/**'
+      - '!selenium-csharp/README.md'
+  schedule:
+    - cron: '0 21 * * 0-4'
+
+jobs:
+  tests:
+    name: Run Selenium C# UI tests
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: selenium-csharp/src/SeleniumCSharp
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install latest Chrome
+        run: |
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install ./google-chrome-stable_current_amd64.deb
+      - name: Run tests
+        run: dotnet test --logger trx --results-directory ${{ runner.temp }} --output ${{ runner.temp }}
+        env:
+          Goodreads__SignInCredentials__EmailAddress: ${{ secrets.EMAILADDRESS }}
+          Goodreads__SignInCredentials__Password: ${{ secrets.PASSWORD }}
+      - name: Upload screenshot(s) after test(s) failure
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: screenshots
+          path: ${{ runner.temp }}/screenshots
+          if-no-files-found: error
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-results
+          path: ${{ runner.temp }}/*.trx
+          if-no-files-found: error

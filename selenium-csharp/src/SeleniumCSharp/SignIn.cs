@@ -19,7 +19,6 @@ public class SignIn : IDisposable
     public void Scenario()
     {
         // Arrange
-
         var options = OptionsReader.Goodreads.Value.SignInCredentials;
 
         if (string.IsNullOrWhiteSpace(options?.EmailAddress) ||
@@ -31,7 +30,6 @@ public class SignIn : IDisposable
         try
         {
             // Act
-
             _browser.Navigate().GoToUrl("https://www.goodreads.com/user/sign_in");
 
             var emailAddressInput = _browser.WaitUntilElement(By.Id("user_email"), TimeSpan.FromSeconds(5));
@@ -44,7 +42,6 @@ public class SignIn : IDisposable
             submitButton.Click();
 
             // Assert
-
             const string headerSelector = ".siteHeader__primaryNavSeparateLine > .siteHeader__menuList a.siteHeader__topLevelLink";
             var headerLinks = _browser.WaitUntilAllEnabled(headerSelector, TimeSpan.FromSeconds(5));
             headerLinks.Should().HaveCountGreaterOrEqualTo(1);

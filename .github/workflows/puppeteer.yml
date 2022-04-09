@@ -1,0 +1,54 @@
+name: Puppeteer
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'puppeteer/**'
+      - '!puppeteer/README.md'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'puppeteer/**'
+      - '!puppeteer/README.md'
+  schedule:
+    - cron: '0 20 * * 0-4'
+
+jobs:
+  tests:
+    name: Run Puppeteer UI tests
+    runs-on: ubuntu-20.04
+    env:
+      GABO_SCREENSHOTS_ABSOLUTEPATH: ${{ github.workspace }}/puppeteer/screenshots
+      MOCHA_FILE: ${{ github.workspace }}/puppeteer/test-results.xml
+    defaults:
+      run:
+        working-directory: puppeteer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: yarn install
+        run: yarn install
+      - name: yarn test-ci
+        run: yarn test-ci
+        env:
+          GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS: ${{ secrets.EMAILADDRESS }}
+          GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD: ${{ secrets.PASSWORD }}
+      - name: Upload screenshot(s) after test(s) failure
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: screenshots
+          path: ${{ env.GABO_SCREENSHOTS_ABSOLUTEPATH }}
+          if-no-files-found: error
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-results
+          path: ${{ env.MOCHA_FILE }}
+          if-no-files-found: error

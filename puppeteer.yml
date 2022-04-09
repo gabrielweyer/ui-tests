@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'Ubuntu-20.04'
+  vmImage: ubuntu-20.04
 
 trigger:
   branches:
@@ -21,10 +21,6 @@ pr:
     - puppeteer/README.md
 
 steps:
-
-- bash: |
-    yarn set version berry
-  displayName: 'Use Yarn Modern'
 
 - bash: |
     yarn install

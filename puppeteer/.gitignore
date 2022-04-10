@@ -1,9 +1,7 @@
 # npm packages
-
 node_modules/
 
 # Failed tests screenshots
-
 screenshots/
 
 # Yarn
@@ -16,6 +14,5 @@ yarn-error.log
 !.yarn/sdks
 !.yarn/versions
 
-# JUnit reporter (for Azure DevOps)
-
+# JUnit reporter
 test-results.xml

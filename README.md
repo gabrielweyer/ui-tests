@@ -24,40 +24,31 @@ The configuration of secrets is explained in the [Selenium C#](./selenium-csharp
 
 ## Continuous Integration
 
-I'm using [Azure pipelines][azure-pipelines] and [GitHub Actions][github-actions] to run the tests on every commit to `main`.
+I'm using [GitHub Actions][github-actions] to run the tests on every commit to `main`.
 
-| | Azure DevOps | GitHub Actions |
-| - | - | - |
-| Selenium C# | [![Build Status][azure-devops-selenium-shield]][azure-devops-selenium] | N/A |
-| Puppeteer | [![Build Status][azure-devops-puppeteer-shield]][azure-devops-puppeteer] | [![Build Status][github-actions-puppeteer-shield]][github-actions-puppeteer] |
+[![Build Status][github-actions-selenium-shield]][github-actions-selenium]
+
+[![Build Status][github-actions-puppeteer-shield]][github-actions-puppeteer]
 
 The builds steps are versioned with the code as `YAML`:
 
-- [Azure DevOps selenium-csharp.yml](./selenium-csharp.yml)
-- [Azure DevOps puppeteer.yml](./puppeteer.yml) - [GitHub Actions puppeteer.yml](./.github/workflows/puppeteer.yml)
+- [selenium-csharp.yml](./.github/workflows/selenium-csharp.yml)
+- [puppeteer.yml](./.github/workflows/puppeteer.yml)
 
-All Azure DevOps builds are also scheduled to run at 5:00 AM Australia/Melbourne seven days a week. This is to prevent the tests from rotting when no changes are committed to them.
+The builds are also scheduled to run daily on weekdays. This is to prevent the tests from rotting when no changes are committed to them.
 
 ### Common build properties
 
 - Builds are only triggered when the code changes. The `Puppeteer` build will not trigger when there are changes to the `Selenium C#` tests
 - When a test fail, the test suite takes a screenshot which is then uploaded as an artifact
-- Test results are uploaded to `Azure DevOps` (see screenshot below)
 - Secret variables are passed as environment variables
-
-Test results in `Azure DevOps`:
-
-![Test results in Azure DevOps](./docs/assets/test-results.png)
 
 [selenium-webdriver]: https://www.seleniumhq.org/projects/webdriver/
 [puppeteer]: https://developers.google.com/web/tools/puppeteer/
 [github]: https://github.com/
 [goodreads]: https://www.goodreads.com/
-[azure-pipelines]: https://azure.microsoft.com/en-au/services/devops/pipelines/
-[azure-devops-selenium-shield]: https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Selenium%20C%23?branchName=main&label=Selenium%20C%23
-[azure-devops-selenium]: https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=11
-[azure-devops-puppeteer-shield]: https://dev.azure.com/gabrielweyer/ui-testing/_apis/build/status/Puppeteer?branchName=main&label=Puppeteer
-[azure-devops-puppeteer]: https://dev.azure.com/gabrielweyer/ui-testing/_build/latest?definitionId=10
+[github-actions-selenium-shield]: https://github.com/gabrielweyer/ui-tests/actions/workflows/selenium-csharp.yml/badge.svg
+[github-actions-selenium]: https://github.com/gabrielweyer/ui-tests/actions/workflows/selenium-csharp.yml
 [github-actions-puppeteer-shield]: https://github.com/gabrielweyer/ui-tests/actions/workflows/puppeteer.yml/badge.svg
 [github-actions-puppeteer]: https://github.com/gabrielweyer/ui-tests/actions/workflows/puppeteer.yml
 [github-actions]: https://github.com/features/actions

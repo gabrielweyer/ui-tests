@@ -1,13 +1,6 @@
 name: Puppeteer
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - .github/workflows/puppeteer.yml
-      - 'puppeteer/**'
-      - '!puppeteer/README.md'
   pull_request:
     branches:
       - main

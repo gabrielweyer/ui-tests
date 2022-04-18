@@ -14,5 +14,5 @@ yarn-error.log
 !.yarn/sdks
 !.yarn/versions
 
-# JUnit reporter
-test-results.xml
+# Test results
+test-results/

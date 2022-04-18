@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       GABO_SCREENSHOTS_ABSOLUTEPATH: ${{ github.workspace }}/puppeteer/screenshots
-      MOCHA_FILE: ${{ github.workspace }}/puppeteer/test-results.xml
     defaults:
       run:
         working-directory: puppeteer
@@ -52,5 +51,5 @@ jobs:
         if: always()
         with:
           name: test-results
-          path: ${{ env.MOCHA_FILE }}
+          path: puppeteer/test-results
           if-no-files-found: error

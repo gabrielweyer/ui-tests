@@ -35,7 +35,7 @@ jobs:
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install ./google-chrome-stable_current_amd64.deb
       - name: Run tests
-        run: dotnet test --logger trx --results-directory ${{ runner.temp }} --output ${{ runner.temp }}
+        run: dotnet test --logger "html;LogFileName=test-results.html" --results-directory ${{ runner.temp }} --output ${{ runner.temp }}
         env:
           Goodreads__SignInCredentials__EmailAddress: ${{ secrets.EMAILADDRESS }}
           Goodreads__SignInCredentials__Password: ${{ secrets.PASSWORD }}
@@ -51,5 +51,5 @@ jobs:
         if: always()
         with:
           name: test-results
-          path: ${{ runner.temp }}/*.trx
+          path: ${{ runner.temp }}/*.html
           if-no-files-found: error

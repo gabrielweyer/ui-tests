@@ -32,10 +32,14 @@ public class SignIn : IDisposable
             // Act
             _browser.Navigate().GoToUrl("https://www.goodreads.com/user/sign_in");
 
-            var emailAddressInput = _browser.WaitUntilElement(By.Id("user_email"), TimeSpan.FromSeconds(5));
+            var signInWithEmailButton =
+                _browser.WaitUntilElement(By.ClassName("authPortalSignInButton"), TimeSpan.FromSeconds(5));
+            signInWithEmailButton.Click();
+
+            var emailAddressInput = _browser.WaitUntilElement(By.Id("ap_email"), TimeSpan.FromSeconds(5));
             emailAddressInput.SendKeys(options.EmailAddress);
 
-            var passwordInput = _browser.WaitUntilElement(By.Id("user_password"), TimeSpan.FromSeconds(0.5));
+            var passwordInput = _browser.WaitUntilElement(By.Id("ap_password"), TimeSpan.FromSeconds(0.5));
             passwordInput.SendKeys(options.Password);
 
             var submitButton = _browser.WaitUntilElement(By.CssSelector("input[type=\"submit\"]"), TimeSpan.FromSeconds(0.5));

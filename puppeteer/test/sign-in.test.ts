@@ -32,12 +32,16 @@ describe('SignIn', () => {
       it('Then display home page', async function() {
         try {
           // Act
-          const submitButtonSelector = 'input[type="submit"]';
-
           await page.goto('https://www.goodreads.com/user/sign_in');
+
+          const signInWithEmailButtonSelector = '.authPortalSignInButton';
+          await page.waitForSelector(signInWithEmailButtonSelector, { visible: true, timeout: 5000 });
+          await page.click(signInWithEmailButtonSelector);
+
+          const submitButtonSelector = 'input[type="submit"]';
           await page.waitForSelector(submitButtonSelector, { visible: true, timeout: 5000 });
-          await page.type('#user_email', config.goodreads.signInCredentials.emailAddress);
-          await page.type('#user_password', config.goodreads.signInCredentials.password);
+          await page.type('#ap_email', config.goodreads.signInCredentials.emailAddress);
+          await page.type('#ap_password', config.goodreads.signInCredentials.password);
           await page.click(submitButtonSelector);
 
           // Assert

@@ -6,6 +6,7 @@ on:
       - main
     paths-ignore:
       - .github/workflows/selenium-csharp.yml
+      - '.vscode/**'
       - 'selenium-csharp/**'
       - '!selenium-csharp/README.md'
 

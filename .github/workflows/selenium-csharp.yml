@@ -35,7 +35,7 @@ jobs:
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install ./google-chrome-stable_current_amd64.deb
       - name: Run tests
-        run: dotnet test --filter FullyQualifiedName!=SeleniumCSharp.SignIn.Scenario --logger "html;LogFileName=test-results.html" --results-directory ${{ runner.temp }} --output ${{ runner.temp }}
+        run: dotnet test --filter FullyQualifiedName!=SeleniumCSharp.SignIn.Scenario --logger "html;LogFileName=test-results.html" --logger GitHubActions --results-directory ${{ runner.temp }} --output ${{ runner.temp }}
         env:
           Goodreads__SignInCredentials__EmailAddress: ${{ secrets.EMAILADDRESS }}
           Goodreads__SignInCredentials__Password: ${{ secrets.PASSWORD }}

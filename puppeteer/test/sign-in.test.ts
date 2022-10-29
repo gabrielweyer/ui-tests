@@ -48,7 +48,7 @@ describe('SignIn', () => {
           const headerLinksSelector = '.siteHeader__primaryNavSeparateLine > .siteHeader__menuList a.siteHeader__topLevelLink';
           await page.waitForSelector(headerLinksSelector, { timeout: 5000 });
           const headerLinksText = await page
-            .evaluate(selector => Array.from(document.querySelectorAll(selector))
+            .evaluate(selector => Array.from(document.querySelectorAll<HTMLAnchorElement>(selector))
             .map(l => l.innerText.toLowerCase()), headerLinksSelector);
 
           expect(headerLinksText).to.include('my books');

@@ -27,7 +27,7 @@ describe('ViewPublicProfile', function() {
         // Assert
         const fullnameSelector = '#profileNameTopHeading';
         await page.waitForSelector(fullnameSelector, { visible: true });
-        const actualFullname = await page.evaluate((selector) => document.querySelector(selector).innerText, fullnameSelector);
+        const actualFullname = await page.evaluate((selector) => document.querySelector<HTMLHeadingElement>(selector).innerText, fullnameSelector);
 
         expect(actualFullname).to.equal(config.goodreads.publicProfile.expectedFullname);
       } catch (error) {

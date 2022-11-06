@@ -21,7 +21,7 @@ on:
 jobs:
   tests:
     name: Run Puppeteer UI tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       GABO_SCREENSHOTS_ABSOLUTEPATH: ${{ github.workspace }}/puppeteer/screenshots
     defaults:

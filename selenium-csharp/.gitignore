@@ -1,13 +1,10 @@
 # Rider
-
 .idea/
 *.DotSettings.user
 
 # Visual Studio
-
 .vs/
 
 # Compilation detritus
-
 bin/
 obj/

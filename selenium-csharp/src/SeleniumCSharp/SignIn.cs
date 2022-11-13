@@ -21,12 +21,6 @@ public class SignIn : IDisposable
         // Arrange
         var options = OptionsReader.Goodreads.Value.SignInCredentials;
 
-        if (string.IsNullOrWhiteSpace(options?.EmailAddress) ||
-            string.IsNullOrWhiteSpace(options.Password))
-        {
-            throw new ArgumentException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
-        }
-
         try
         {
             // Act
@@ -61,6 +55,6 @@ public class SignIn : IDisposable
 
     public void Dispose()
     {
-        _browser?.Dispose();
+        _browser.Dispose();
     }
 }

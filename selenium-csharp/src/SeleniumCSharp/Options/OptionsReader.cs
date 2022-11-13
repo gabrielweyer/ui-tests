@@ -4,7 +4,7 @@ namespace SeleniumCSharp.Options;
 
 public class OptionsReader
 {
-    public static readonly Lazy<GoodreadsOptions> Goodreads = new Lazy<GoodreadsOptions>(() =>
+    public static readonly Lazy<GoodreadsOptions> Goodreads = new(() =>
     {
         var config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -12,6 +12,15 @@ public class OptionsReader
             .AddEnvironmentVariables()
             .Build();
 
-        return config.GetSection("Goodreads").Get<GoodreadsOptions>();
+        var options = config.GetSection("Goodreads").Get<GoodreadsOptions>();
+
+        if (options == null ||
+            string.IsNullOrWhiteSpace(options.SignInCredentials.EmailAddress) ||
+            string.IsNullOrWhiteSpace(options.SignInCredentials.Password))
+        {
+            throw new ArgumentException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
+        }
+
+        return options;
     });
 }

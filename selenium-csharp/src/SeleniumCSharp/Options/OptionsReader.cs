@@ -2,13 +2,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace SeleniumCSharp.Options;
 
-public class OptionsReader
+public static class OptionsReader
 {
     public static readonly Lazy<GoodreadsOptions> Goodreads = new(() =>
     {
         var config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
-            .AddUserSecrets<OptionsReader>(optional: true)
+            .AddUserSecrets<GoodreadsOptions>(optional: true)
             .AddEnvironmentVariables()
             .Build();
 

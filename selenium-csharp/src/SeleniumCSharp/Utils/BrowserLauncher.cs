@@ -2,7 +2,7 @@ using System.Reflection;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace SeleniumCSharp.WebDriverExtensions;
+namespace SeleniumCSharp.Utils;
 
 public static class BrowserLauncher
 {

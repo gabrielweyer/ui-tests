@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 
-namespace SeleniumCSharp.WebDriverExtensions;
+namespace SeleniumCSharp.Utils;
 
 public static class ExpectedConditions
 {

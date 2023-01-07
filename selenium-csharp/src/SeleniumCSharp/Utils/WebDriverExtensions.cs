@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace SeleniumCSharp.WebDriverExtensions;
+namespace SeleniumCSharp.Utils;
 
 public static class WebDriverExtensions
 {

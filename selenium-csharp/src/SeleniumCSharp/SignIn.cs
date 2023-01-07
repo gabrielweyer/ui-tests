@@ -1,12 +1,12 @@
 using FluentAssertions;
 using OpenQA.Selenium;
 using SeleniumCSharp.Options;
-using SeleniumCSharp.WebDriverExtensions;
+using SeleniumCSharp.Utils;
 using Xunit;
 
 namespace SeleniumCSharp;
 
-public class SignIn : IDisposable
+public sealed class SignIn : IDisposable
 {
     private readonly IWebDriver _browser;
 
@@ -24,7 +24,7 @@ public class SignIn : IDisposable
         try
         {
             // Act
-            _browser.Navigate().GoToUrl("https://www.goodreads.com/user/sign_in");
+            _browser.Navigate().GoToUrl(new Uri("https://www.goodreads.com/user/sign_in"));
 
             var signInWithEmailButton =
                 _browser.WaitUntilElement(By.ClassName("authPortalSignInButton"), TimeSpan.FromSeconds(5));
@@ -44,7 +44,7 @@ public class SignIn : IDisposable
             var headerLinks = _browser.WaitUntilAllEnabled(headerSelector, TimeSpan.FromSeconds(5));
             headerLinks.Should().HaveCountGreaterOrEqualTo(1);
 
-            headerLinks.Select(l => l.Text.ToLowerInvariant()).Should().Contain("my books");
+            headerLinks.Select(l => l.Text.ToUpperInvariant()).Should().Contain("MY BOOKS");
         }
         catch (Exception)
         {

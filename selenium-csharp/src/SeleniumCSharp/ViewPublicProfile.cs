@@ -1,11 +1,11 @@
 using OpenQA.Selenium;
 using SeleniumCSharp.Options;
-using SeleniumCSharp.WebDriverExtensions;
+using SeleniumCSharp.Utils;
 using Xunit;
 
 namespace SeleniumCSharp;
 
-public class ViewPublicProfile : IDisposable
+public sealed class ViewPublicProfile : IDisposable
 {
     private readonly IWebDriver _browser;
 

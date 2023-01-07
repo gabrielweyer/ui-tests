@@ -18,7 +18,7 @@ public static class OptionsReader
             string.IsNullOrWhiteSpace(options.SignInCredentials.EmailAddress) ||
             string.IsNullOrWhiteSpace(options.SignInCredentials.Password))
         {
-            throw new ArgumentException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
+            throw new InvalidOperationException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
         }
 
         return options;

@@ -38,6 +38,6 @@ public static class WebDriverExtensions
 
         var screenshot = (browser as ITakesScreenshot)?.GetScreenshot();
         Directory.CreateDirectory(screenshotsPath);
-        screenshot?.SaveAsFile($"{screenshotsPath}{filenameNoPathNoExtension}.png", ScreenshotImageFormat.Png);
+        screenshot?.SaveAsFile($"{screenshotsPath}{filenameNoPathNoExtension}.png");
     }
 }

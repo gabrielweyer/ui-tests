@@ -10,3 +10,8 @@ updates:
         patterns:
           - xunit
           - xunit.analyzers
+          - xunit.runner.visualstudio
+      selenium:
+        patterns:
+          - Selenium.WebDriver
+          - Selenium.WebDriver.ChromeDriver

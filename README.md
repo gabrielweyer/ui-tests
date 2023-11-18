@@ -46,7 +46,6 @@ The builds are also scheduled to run daily on weekdays. This is to prevent the t
 [selenium-webdriver]: https://www.seleniumhq.org/projects/webdriver/
 [puppeteer]: https://developers.google.com/web/tools/puppeteer/
 [github]: https://github.com/
-[goodreads]: https://www.goodreads.com/
 [github-actions-selenium-shield]: https://github.com/gabrielweyer/ui-tests/actions/workflows/selenium-csharp.yml/badge.svg
 [github-actions-selenium]: https://github.com/gabrielweyer/ui-tests/actions/workflows/selenium-csharp.yml
 [github-actions-puppeteer-shield]: https://github.com/gabrielweyer/ui-tests/actions/workflows/puppeteer.yml/badge.svg

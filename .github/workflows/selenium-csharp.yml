@@ -27,10 +27,10 @@ jobs:
         working-directory: selenium-csharp/src/SeleniumCSharp
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         name: Install .NET 8
         with:
           dotnet-version: '8.0.x'
@@ -45,14 +45,14 @@ jobs:
           Goodreads__SignInCredentials__EmailAddress: ${{ secrets.EMAILADDRESS }}
           Goodreads__SignInCredentials__Password: ${{ secrets.PASSWORD }}
       - name: Upload screenshot(s) after test(s) failure
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: screenshots
           path: ${{ runner.temp }}/screenshots
           if-no-files-found: error
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results

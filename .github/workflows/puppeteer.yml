@@ -29,7 +29,7 @@ jobs:
         working-directory: puppeteer
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: yarn install
@@ -40,14 +40,14 @@ jobs:
           GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS: ${{ secrets.EMAILADDRESS }}
           GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD: ${{ secrets.PASSWORD }}
       - name: Upload screenshot(s) after test(s) failure
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: screenshots
           path: ${{ env.GABO_SCREENSHOTS_ABSOLUTEPATH }}
           if-no-files-found: error
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results

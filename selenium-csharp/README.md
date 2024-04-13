@@ -13,13 +13,13 @@
 
 I'm using the [Secret Manager][secret-manager] to store secrets locally. The code is expecting the following secrets to be set:
 
-- `Goodreads:SignInCredentials:EmailAddress`
-- `Goodreads:SignInCredentials:Password`
+- `Reddit:SignInCredentials:Username`
+- `Reddit:SignInCredentials:Password`
 
 You can set secrets by issuing the below command in the project directory:
 
 ```powershell
-dotnet user-secrets set Goodreads:SignInCredentials:EmailAddress "your.email@address.com"
+dotnet user-secrets set Reddit:SignInCredentials:Username "yourUsername"
 ```
 
 [nuget-selenium-webdriver]: https://www.nuget.org/packages/Selenium.WebDriver/

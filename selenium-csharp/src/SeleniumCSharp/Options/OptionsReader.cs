@@ -4,21 +4,20 @@ namespace SeleniumCSharp.Options;
 
 public static class OptionsReader
 {
-    public static readonly Lazy<GoodreadsOptions> Goodreads = new(() =>
+    public static readonly Lazy<RedditOptions> Reddit = new(() =>
     {
         var config = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .AddUserSecrets<GoodreadsOptions>(optional: true)
+            .AddUserSecrets<RedditOptions>(optional: true)
             .AddEnvironmentVariables()
             .Build();
 
-        var options = config.GetSection("Goodreads").Get<GoodreadsOptions>();
+        var options = config.GetSection("Reddit").Get<RedditOptions>();
 
         if (options == null ||
-            string.IsNullOrWhiteSpace(options.SignInCredentials.EmailAddress) ||
+            string.IsNullOrWhiteSpace(options.SignInCredentials.Username) ||
             string.IsNullOrWhiteSpace(options.SignInCredentials.Password))
         {
-            throw new InvalidOperationException("You need to configure 'Goodreads:SignInCredentials:EmailAddress' and 'Goodreads:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.");
+            throw new InvalidOperationException("You need to configure 'Reddit:SignInCredentials:Username' and 'Reddit:SignInCredentials:Password', refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/selenium-csharp/README.md.");
         }
 
         return options;

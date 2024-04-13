@@ -1,28 +1,22 @@
 interface Credentials {
-  emailAddress: string;
+  username: string;
   password: string;
 }
 
-interface PublicProfileConfig {
-  username: string;
-  expectedFullname: string;
-}
-
-interface GoodreadsConfig {
-  publicProfile: PublicProfileConfig;
+interface RedditConfig {
   signInCredentials: Credentials;
 }
 
 interface PuppeteerConfig {
-  goodreads: GoodreadsConfig;
+  reddit: RedditConfig;
   screenshotsAbsolutePath: string;
 }
 
-const emailAddress: string = process.env.GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS;
-const password: string = process.env.GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD;
+const username: string = process.env.GABO_REDDIT_SIGNINCREDENTIALS_USERNAME;
+const password: string = process.env.GABO_REDDIT_SIGNINCREDENTIALS_PASSWORD;
 
-if (!(emailAddress && password)) {
-  throw new Error('You need to configure "GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS" and "GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD", refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.');
+if (!(username && password)) {
+  throw new Error('You need to configure "GABO_REDDIT_SIGNINCREDENTIALS_USERNAME" and "GABO_REDDIT_SIGNINCREDENTIALS_PASSWORD", refer to the README: https://github.com/gabrielweyer/ui-tests/blob/main/README.md.');
 }
 
 const screenshotsAbsolutePath = process.env.GABO_SCREENSHOTS_ABSOLUTEPATH || './screenshots';
@@ -40,13 +34,9 @@ if (mochaFile && mochaFile.startsWith('$'))
 }
 
 const config: PuppeteerConfig = {
-  goodreads: {
-    publicProfile: {
-      username: 'uitests',
-      expectedFullname: 'UI Tests'
-    },
+  reddit: {
     signInCredentials: {
-      emailAddress: emailAddress,
+      username: username,
       password: password
     }
   },

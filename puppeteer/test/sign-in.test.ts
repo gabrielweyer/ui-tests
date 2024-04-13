@@ -1,24 +1,15 @@
-import { expect } from 'chai';
 import * as puppeteer from 'puppeteer';
 import { config } from '../config';
-import { saveScreenshot } from '../puppeteer-extensions';
+import { launch, newPage, saveScreenshot } from '../puppeteer-extensions';
+import { expect } from 'chai';
 
 describe('SignIn', () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
 
   before(async function() {
-    const options = {
-      headless: true,
-      defaultViewport: {
-        width: 1040,
-        height: 800,
-        isLandscape: true
-      }
-    };
-
-    browser = await puppeteer.launch(options);
-    page = await browser.newPage();
+    browser = await launch();
+    page = await newPage(browser);
   });
 
   after(async function() {
@@ -29,29 +20,48 @@ describe('SignIn', () => {
 
   describe('Given navigate to sign-in page', function() {
     describe('And given enter correct credentials', function() {
-      it('Then display home page', async function() {
+      it('Then display signed-in home page and user page', async function() {
         try {
           // Act
-          await page.goto('https://www.goodreads.com/user/sign_in');
+          await page.goto('https://www.reddit.com/login/');
 
-          const signInWithEmailButtonSelector = '.authPortalSignInButton';
-          await page.waitForSelector(signInWithEmailButtonSelector, { visible: true, timeout: 5000 });
-          await page.click(signInWithEmailButtonSelector);
+          const usernameInputSelector = '#login-username';
+          await page.waitForSelector(usernameInputSelector, { visible: true, timeout: 10000 });
+          await page.type(usernameInputSelector, config.reddit.signInCredentials.username, { delay: 100 });
+          await page.type('#login-password', config.reddit.signInCredentials.password, { delay: 100 });
 
-          const submitButtonSelector = 'input[type="submit"]';
-          await page.waitForSelector(submitButtonSelector, { visible: true, timeout: 5000 });
-          await page.type('#ap_email', config.goodreads.signInCredentials.emailAddress);
-          await page.type('#ap_password', config.goodreads.signInCredentials.password);
-          await page.click(submitButtonSelector);
+          await page.setRequestInterception(true);
+          page.on('request', interceptedRequest => {
+            if (interceptedRequest.url() === 'https://www.reddit.com/svc/shreddit/account/login') {
+              console.log(interceptedRequest.postData());
+            }
+
+            interceptedRequest.continue();
+          });
+          page.on('response', async interceptedResponse => {
+            if (interceptedResponse.url() === 'https://www.reddit.com/svc/shreddit/account/login') {
+              console.log(await interceptedResponse.text());
+            }
+          });
+
+          await Promise.all([
+            page.waitForNavigation({ timeout: 10000 }),
+            page.keyboard.press('Enter')
+          ]);
 
           // Assert
-          const headerLinksSelector = '.siteHeader__primaryNavSeparateLine > .siteHeader__menuList a.siteHeader__topLevelLink';
-          await page.waitForSelector(headerLinksSelector, { timeout: 5000 });
-          const headerLinksText = await page
-            .evaluate(selector => Array.from(document.querySelectorAll<HTMLAnchorElement>(selector))
-            .map(l => l.innerText.toLowerCase()), headerLinksSelector);
+          const avatarSelector = 'faceplate-dropdown-menu';
+          await page.waitForSelector(avatarSelector, { timeout: 5000 });
 
-          expect(headerLinksText).to.include('my books');
+          // Act
+          await page.goto(`https://www.reddit.com/u/${config.reddit.signInCredentials.username}`);
+
+          // Assert
+          const usernameSelector = 'h1';
+          await page.waitForSelector(usernameSelector, { visible: true });
+          const actualUsername = await page.evaluate((selector) => document.querySelector<HTMLHeadingElement>(selector).innerText, usernameSelector);
+
+          expect(actualUsername).to.equal(config.reddit.signInCredentials.username);
         } catch (error) {
           await saveScreenshot(page, 'sign-in');
           throw error;

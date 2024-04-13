@@ -2,9 +2,9 @@
 
 I want to learn how to write UI tests. [Selenium WebDriver][selenium-webdriver] seems to be the most commonly used platform. I also stumbled upon [Puppeteer][puppeteer] and decided to use both libraries.
 
-I decided to test [Goodreads][github] as this is one of the few sites I use that does not require Multi-Factor Authentication.
+I decided to test [Reddit][reddit] as this is one of the few sites that does not require Multi-Factor Authentication.
 
-Over time I hope to see my tests' brittleness exposed which will give me the opportunity to make them more resilient. This example is a bit contrived as teams commonly use data attributes to ease `UI` testing.
+Over time I hope to see my tests' brittleness exposed which will give me the opportunity to make them more resilient. This example is a bit contrived as teams commonly use data attributes to ease UI testing.
 
 As this project is a learning experience I wouldn't recommend being inspired by it (this is even more true for the `Puppeteer` / `TypeScript` tests where I've no idea what I'm doing :joy_cat:).
 
@@ -13,14 +13,14 @@ As this project is a learning experience I wouldn't recommend being inspired by 
 
 ## Configuration
 
-Some tests require a `Goodreads` account to run.
+Tests require a `Reddit` account to run.
 
-The configuration of secrets is explained in the [Selenium C#](./selenium-csharp/README.md) and [Puppeteer](./puppeteer/README.md) `READMEs`.
+The configuration of secrets is explained in the [Selenium C#](./selenium-csharp/README.md) and [Puppeteer](./puppeteer/README.md) `README`s.
 
 ## Tests
 
-- Load a user profile and assert the full name
-- Sign-in with a test user and assert that the "My Books" header link is present
+- Sign-in with a test user and assert that the user menu is present
+- Load the user profile and assert the username
 
 ## Continuous Integration
 
@@ -45,7 +45,7 @@ The builds are also scheduled to run daily on weekdays. This is to prevent the t
 
 [selenium-webdriver]: https://www.seleniumhq.org/projects/webdriver/
 [puppeteer]: https://developers.google.com/web/tools/puppeteer/
-[github]: https://github.com/
+[reddit]: https://www.reddit.com/
 [github-actions-selenium-shield]: https://github.com/gabrielweyer/ui-tests/actions/workflows/selenium-csharp.yml/badge.svg
 [github-actions-selenium]: https://github.com/gabrielweyer/ui-tests/actions/workflows/selenium-csharp.yml
 [github-actions-puppeteer-shield]: https://github.com/gabrielweyer/ui-tests/actions/workflows/puppeteer.yml/badge.svg

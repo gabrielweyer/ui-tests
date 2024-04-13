@@ -10,9 +10,9 @@
 
 I'm using environment variables to expose secrets to the tests.
 
-Test `Goodreads` account:
+Test `Reddit` account:
 
-- `GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS`
-- `GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD`
+- `GABO_REDDIT_SIGNINCREDENTIALS_USERNAME`
+- `GABO_REDDIT_SIGNINCREDENTIALS_PASSWORD`
 
 [npm-puppeteer]: https://www.npmjs.com/package/puppeteer

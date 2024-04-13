@@ -37,8 +37,8 @@ jobs:
       - name: yarn test-ci
         run: yarn test-ci
         env:
-          GABO_GOODREADS_SIGNINCREDENTIALS_EMAILADDRESS: ${{ secrets.EMAILADDRESS }}
-          GABO_GOODREADS_SIGNINCREDENTIALS_PASSWORD: ${{ secrets.PASSWORD }}
+          GABO_REDDIT_SIGNINCREDENTIALS_USERNAME: ${{ secrets.USERNAME }}
+          GABO_REDDIT_SIGNINCREDENTIALS_PASSWORD: ${{ secrets.PASSWORD }}
       - name: Upload screenshot(s) after test(s) failure
         uses: actions/upload-artifact@v4
         if: failure()

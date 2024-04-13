@@ -14,3 +14,15 @@ export async function saveScreenshot(page : puppeteer.Page, filenameNoPathNoExte
 
   await page.screenshot({ path: `${config.screenshotsAbsolutePath}/${filenameNoPathNoExtension}.png`, fullPage: true });
 }
+
+export async function launch() : Promise<puppeteer.Browser> {
+  return await puppeteer.launch({headless: true});
+}
+
+export async function newPage(browser: puppeteer.Browser) : Promise<puppeteer.Page> {
+  // Reddit is blocking browsers whose user-agent contains 'Headless'
+  const userAgent = (await browser.userAgent()).replace('Headless', '');
+  const page = await browser.newPage();
+  await page.setUserAgent(userAgent);
+  return page;
+}

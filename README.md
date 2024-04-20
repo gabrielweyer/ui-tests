@@ -1,5 +1,7 @@
 # UI testing
 
+Web sites have stepped up their defences against malicious activity. As a result I found myself trying to circumvent bot protection which wasn't the intention. I'm keeping this repository but I won't be working on it anymore.
+
 I want to learn how to write UI tests. [Selenium WebDriver][selenium-webdriver] seems to be the most commonly used platform. I also stumbled upon [Puppeteer][puppeteer] and decided to use both libraries.
 
 I decided to test [Goodreads][github] as this is one of the few sites I use that does not require Multi-Factor Authentication.
